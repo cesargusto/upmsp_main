@@ -5,7 +5,7 @@ import java.util.Random;
 import com.upmsp_main.experiment.BestResults;
 import com.upmsp_main.core.Solution;
 
-public class SA {
+public class SA2 {
 	
 	private Solution solucao;
 	private MovimentosSA m_sa;
@@ -14,88 +14,13 @@ public class SA {
 	private double ALF;
 	private int SAMAX;
 	
-	public SA(Solution solucao, double t_inicial, float alfa, int samax, BestResults best_results) {
+	public SA2(Solution solucao, double t_inicial, float alfa, int samax, BestResults best_results) {
 		this.solucao = solucao;
 		this.m_sa = new MovimentosSA();
 		this.T_INICIAL = t_inicial;
 		this.ALF = alfa;
 		this.SAMAX = samax;
 		this.best_results = best_results;
-	}
-	
-	public SA(Solution solucao, int samax, BestResults best_results) {
-		this.solucao = solucao;
-		this.m_sa = new MovimentosSA();
-		this.best_results = best_results;
-		this.T_INICIAL = 900.0;
-		this.ALF = 0.94;
-		this.SAMAX = samax;
-	}
-	
-	public Solution execute_sa(long time) throws CloneNotSupportedException {
-		Solution melhor_solucao;
-		Solution solucao_linha;
-		long fo_solucao = Integer.MAX_VALUE;
-		long fo_solucao_linha = Integer.MAX_VALUE;
-		int IterT = 0;			// iterations number in temperature
-		double T = T_INICIAL;	// initial temperature
-		Random rnd = new Random();
-		
-		melhor_solucao = solucao.clone();	// best solution receive the solution was given
-		
-		long start = 0;
-		long end = 0;
-		long t = 0;
-	
-		start = System.currentTimeMillis();
-		
-		while(T > 1){
-			while(IterT < SAMAX){
-				if(t > time)
-					break;
-				IterT += 1;
-				
-				fo_solucao = solucao.makespan();
-				solucao_linha = solucao.clone();
-				solucao_linha = this.gera_vizinho(solucao_linha);
-				fo_solucao_linha = solucao_linha.makespan();
-				
-				//solucao_linha.print_solution();
-				
-				long Alfa = fo_solucao_linha - fo_solucao;
-				
-				if(Alfa < 0){
-					solucao = solucao_linha.clone();					
-					if(fo_solucao_linha < melhor_solucao.makespan()){
-						melhor_solucao = solucao.clone();
-						//System.out.println("Melhora SA :"+melhor_solucao.makespan());
-					}
-				}
-				else{
-					Double x = rnd.nextDouble();
-					Double exp = Math.pow(Math.E, (-1*Alfa)/T); 
-					if(x < exp){
-						solucao = solucao_linha.clone();
-					}
-				}
-				end = System.currentTimeMillis();
-				t = end - start;
-			}
-			//System.out.printf("\nTemperatura:\t%.4f\tMakespan:\t%d\n", T, fo_solucao_linha);
-			
-			T = ALF * T;
-			IterT = 0;
-
-			end = System.currentTimeMillis();
-			t = end - start; 
-			
-			if(t > time)
-				break;
-		}
-		solucao = melhor_solucao.clone();
-		int fo_melhor = solucao.makespan();
-		this.best_results.setBest_list(fo_melhor);
-		return solucao;
 	}
 	
 	public Solution execute_sa() throws CloneNotSupportedException {

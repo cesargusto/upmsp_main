@@ -1,5 +1,14 @@
+/**
+ * Classe refatorada de ArrayList para List
+ * Alteração feita dia 04 de Jan de 2020
+ * 
+ * @author cesar
+ * 
+ * **/
+
 package com.upmsp_main.core;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -10,7 +19,7 @@ import com.upmsp_main.instances.ReadInstances;
 public class Solution implements Cloneable{
 	
 	private ReadInstances arquivo;
-	private ArrayList<Machine> solucao;
+	private List<Machine> solucao;
 	
 	public Solution(ReadInstances arq){
 		this.arquivo = arq;
@@ -69,7 +78,7 @@ public class Solution implements Cloneable{
 	}
 	
 	public void ConstroiSolution(){
-		ArrayList<Integer> candidatos = new ArrayList<>(arquivo.getN_jobs());
+		List<Integer> candidatos = new ArrayList<>(arquivo.getN_jobs());
 		for(int i = 0;i < arquivo.getN_jobs();i++){
 			candidatos.add(i);
 		}
@@ -90,26 +99,29 @@ public class Solution implements Cloneable{
 	
 	public int makespan(){
 		int mspan = 0;
-		ArrayList<Integer>mspans = new ArrayList<>(arquivo.getN_maqs());
-		for(int t = 0;t < arquivo.getN_maqs();t++){
+		List<Integer>mspans = new ArrayList<>(arquivo.getN_maqs());
+		
+		for(int t = 0;t < arquivo.getN_maqs();t++)
 			mspans.add(this.getMaq(t).tempoMaq(arquivo, t));
-		}
+
 		mspan = Collections.max(mspans);
+		
 		return mspan;
 	}
 	
 	public int indice_makespan(){
 		int makespan = this.makespan();
 		int index = -1;
-		if(Tempos().contains(makespan)){
+		if(Tempos().contains(makespan))
 			index = Tempos().indexOf(makespan);
-		}
+
 		return index;
 	}
 	
-	public ArrayList<Integer> Tempos(){
+	public List<Integer> Tempos(){
 		
-		ArrayList<Integer>tempos = new ArrayList<>(arquivo.getN_maqs());
+		List<Integer>tempos = new ArrayList<>(arquivo.getN_maqs());
+		
 		for(int t = 0;t < arquivo.getN_maqs();t++){
 			tempos.add(this.getMaq(t).tempoMaq(arquivo, t));
 		}
@@ -124,9 +136,9 @@ public class Solution implements Cloneable{
 	 * tempo da máquina
 	 * 
 	 */
-	public ArrayList<Integer> makespan(ArrayList<Integer>tempos, ArrayList<Integer> alter_maqs){
+	public List<Integer> makespan(List<Integer>tempos, List<Integer> alter_maqs){
 		int mspan = 0;
-		ArrayList<Integer>mspans = tempos;
+		List<Integer>mspans = tempos;
 		for(int t = 0;t < alter_maqs.size();t++){
 			mspans.set(alter_maqs.get(t), this.getMaq(alter_maqs.get(t)).tempoMaq(arquivo, alter_maqs.get(t)));
 		}
@@ -134,8 +146,8 @@ public class Solution implements Cloneable{
 		return mspans;
 	}
 	
-	public ArrayList<Integer> maior_menor(){
-		ArrayList<Integer> maior_menor = new ArrayList<>();
+	public List<Integer> maior_menor(){
+		List<Integer> maior_menor = new ArrayList<>();
 		int indice_menor = -1;
 		int indice_maior = -1;
 		int valor_menor = Integer.MAX_VALUE;
@@ -192,7 +204,7 @@ public class Solution implements Cloneable{
 		this.getMaq(indice_mkspan).removeJobToMaq(pos);
 	}
 	
-	public ArrayList<Machine> getSolucao() {
+	public List<Machine> getSolucao() {
 		return solucao;
 	}
 	

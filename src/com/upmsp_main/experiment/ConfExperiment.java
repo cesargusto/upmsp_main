@@ -34,8 +34,6 @@ public class ConfExperiment {
 	private Properties prop;
 	private Calcs calc;
 	private int num_exec; //iterações do experimento - 30
-	//private String dir;
-	
 	
 	public ConfExperiment(Properties prop) {
 		this.prop = prop;

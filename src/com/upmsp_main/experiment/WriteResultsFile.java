@@ -59,9 +59,9 @@ public class WriteResultsFile {
 		int x = Parses.split_nmaq(file_name)[0];
 
 		if(x <= 12) {
-			return "RESULT_RUIZ_SMALL_PATH";
+			return "RESULT_PATH";
 		}else {
-			return "RESULT_RUIZ_LARGE_PATH";
+			return "RESULT_PATH";
 		}
 	}
 	

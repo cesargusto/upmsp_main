@@ -36,45 +36,14 @@ public class StartExperiment {
 		
 		long Start = System.currentTimeMillis();
 		
-		String path_1 = null, path_2= null;
-		String m = prop.getProperty("INST_GROUP_RUIZ");
+		String path_inst = (String)prop.getProperty("INSTANCE");
+		File[] name_list = ReadDirFilesNames.leDir(path_inst);
 		
-		if(m.equals("1")) {
-			path_1 = prop.getProperty("INSTANCE_RUIZ_SMALL");
-		}else if(m.equals("2")) {
-			path_1 = prop.getProperty("INSTANCE_RUIZ_LARGE");
-		}else if(m.equals("0")) {
-			path_1 = prop.getProperty("INSTANCE_RUIZ_SMALL");
-			path_2 = prop.getProperty("INSTANCE_RUIZ_LARGE");
+		for(int i = 0;i < name_list.length;i++) {
+			View.title_3(name_list[i].getName());
+			conf.execute_experiment(name_list[i].getName(), path_inst);
 		}
-		
-		File[] name_list;
-		
-		if(path_2 == null){
-			
-			name_list = ReadDirFilesNames.leDir(path_1);//lista de arquivos contidos no diretorio
-			
-			for(int i = 0;i < name_list.length;i++) {
-				View.title_3(name_list[i].getName());
-				conf.execute_experiment(name_list[i].getName(), path_1);
-			}
-		}else {
-			
-			name_list = ReadDirFilesNames.leDir(path_1);//lista de arquivos contidos no diretorio
-			
-			for(int i = 0;i < name_list.length;i++) {
-				View.title_3(name_list[i].getName());
-				conf.execute_experiment(name_list[i].getName(), path_1);
-			}
-			
-			name_list = ReadDirFilesNames.leDir(path_2);
-			
-			for(int i = 0;i < name_list.length;i++) {
-				View.title_3(name_list[i].getName());
-				conf.execute_experiment(name_list[i].getName(), path_2);
-			}
-		}
-		
+
 		long End = System.currentTimeMillis();
 		long Time = End - Start;
 		Time = Time / 1000;

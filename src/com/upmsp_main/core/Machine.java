@@ -1,12 +1,21 @@
+/**
+ * Classe refatorada de ArrayList para List
+ * Alteração feita dia 04 de Jan de 2020
+ *
+ * @author cesar
+ * 
+ * **/
+
 package com.upmsp_main.core;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import com.upmsp_main.instances.ReadInstances;
 
 public class Machine {
-	private ArrayList<Integer> machine;
+	private List<Integer> machine;
 	
 	public Machine(){
 		this.machine = new ArrayList<Integer>();
@@ -26,12 +35,12 @@ public class Machine {
 		return tempo_total;
 	}
 	
-	public ArrayList<ArrayList<Integer>> tempos_Maq(ReadInstances arq, int nummaq){
+	public List<List<Integer>> tempos_Maq(ReadInstances arq, int nummaq){
 		
-		ArrayList<ArrayList<Integer>> tempos = new ArrayList<>(2);
+		List<List<Integer>> tempos = new ArrayList<>(2);
 		
-		ArrayList<Integer> tempos_exec = new ArrayList<>();
-		ArrayList<Integer> tempos_prep = new ArrayList<>();
+		List<Integer> tempos_exec = new ArrayList<>();
+		List<Integer> tempos_prep = new ArrayList<>();
 		
 		int tempo_prep = 0;
 		int tempo_exec = 0;
@@ -88,7 +97,7 @@ public class Machine {
 		return machine.size();
 	}
 	
-	public ArrayList<Integer> getMaquina() {
+	public List<Integer> getMaquina() {
 		return machine;
 	}
 
@@ -122,6 +131,4 @@ public class Machine {
 	public void trocaJob(int i, int j){
 		Collections.swap(this.machine, i, j);
 	}
-	
-
 }
