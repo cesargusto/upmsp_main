@@ -7,7 +7,8 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		StartExperiment exp = new StartExperiment();
 		exp.start();
-
+		
+		//Testando a primeira branch -> branch-instance-hashmap
 	}
 
 }
