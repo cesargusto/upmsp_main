@@ -1,0 +1,4 @@
+# ignora pasta bin com todos os .class
+experiment_instances/preliminar/
+bin/
+*.class
