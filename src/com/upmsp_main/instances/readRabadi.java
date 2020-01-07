@@ -2,6 +2,11 @@
  *
  * Esta classe é uma classe filha responsável por ler um tipo de instância
  *  do autor Rabadi 2006 e 2013 
+ *  
+ *  Refatorada para utilização de hashMap substituindo a estrutura vector, 
+ *  alteração feita em 07 de Jan de 2020
+ *  
+ *  @author cesar
  * 
  **/
 
@@ -21,8 +26,6 @@ public class readRabadi extends ReadInstances{
 		linha = br.readLine();
 		this.tk = new StringTokenizer(linha, " ");
 		this.n_jobs = Integer.parseInt(tk.nextToken());
-		this.tempo_exec = new int[n_maqs][n_jobs];
-		this.tempo_prep = new int[n_jobs*n_maqs][n_jobs];
 		this.ler(file_name);
 	}
 
@@ -34,12 +37,18 @@ public class readRabadi extends ReadInstances{
 		while(linha.isEmpty())
 			linha = br.readLine();
 		
+		String key = "";
+		int valor = -1;
+		
 		for(int i = 0;i < n_jobs;i++){	
 
 			this.tk = new StringTokenizer(linha, " ");
 			
-			for(int j = 0;j < n_maqs; j++)
-				tempo_exec[j][i] = Integer.parseInt(tk.nextToken());
+			for(int j = 0;j < n_maqs; j++) {
+				key = "E_" + j + "_" + i;
+				valor = Integer.parseInt(tk.nextToken());
+				tempo_exec.put(key, valor);
+			}
 			
 			linha = br.readLine();
 		}
@@ -50,7 +59,9 @@ public class readRabadi extends ReadInstances{
 				this.tk = new StringTokenizer(linha, " ");
 			
 				for(int j = 0;j < n_jobs;j++){
-					tempo_prep[i][j] = Integer.parseInt(tk.nextToken());
+					key = "P_" + i + "_" + j;
+					valor = Integer.parseInt(tk.nextToken());
+					tempo_prep.put(key, valor);
 				}
 			}
 			else i--;
@@ -59,13 +70,15 @@ public class readRabadi extends ReadInstances{
 
 	@Override
 	public int getT_exec(int n_maq, int n_job) {
-		return this.tempo_exec[n_maq][n_job];
+		String key = "E_" + n_maq + "_" + n_job;
+		return (int) this.tempo_exec.get(key);
 	}
 
 	@Override
 	public int getT_prep(int i_maq, int i_job_ant, int i_job) {
 		i_job_ant = i_maq * this.n_jobs + i_job_ant;
-		return this.tempo_prep[i_job_ant][i_job];
+		String key = "P_" + i_job_ant + "_" + i_job;
+		return (int) this.tempo_prep.get(key);
 	}
 
 	@Override
