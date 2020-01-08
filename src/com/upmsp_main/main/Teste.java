@@ -37,7 +37,7 @@ public class Teste {
 		t = end_1 - start;
 		System.out.println("Solução construída\nTempo: "+t/1000+" segundos\n");
 		
-		SA sa = new SA(sol, 2200, (float) 0.99, 100000, best_results);
+		SA sa = new SA(sol, 200, (float) 0.99, 100, best_results);
 		sol = sa.execute_sa();
 		
 		end_2 = System.currentTimeMillis();
