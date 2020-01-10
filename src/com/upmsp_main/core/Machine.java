@@ -97,6 +97,8 @@ public class Machine {
 		return machine.size();
 	}
 	
+	
+	//USAR O LINKED-LIST PARA INSERSÃO NO INICIO DA LISTA
 	public List<Integer> getMaquina() {
 		return machine;
 	}

@@ -74,6 +74,8 @@ public class SA2 {
 		return solucao;
 	}
 	
+	
+	//Retornará um inteiro
 	public Solution gera_vizinho(Solution s){
 		
 		int indice_maior = this.solucao.maior_menor().get(2);
