@@ -102,7 +102,7 @@ public class Machine {
 	}
 
 	public int getJob(int i){
-		return (Integer)this.machine.get(i);
+		return this.machine.get(i);
 	}
 
     public void addJobToMaq(Integer job) {

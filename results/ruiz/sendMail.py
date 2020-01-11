@@ -14,7 +14,7 @@ from email.mime.text import MIMEText
 
 print('Incializando dataframe ...')
 
-df = pd.read_csv('gaps_large_ruiz.csv', sep='\t', usecols=[2, 3, 4, 5, 6, 7, 8, 9])
+df = pd.read_csv('gaps.csv', sep='\t', usecols=[2, 3, 4, 5, 6, 7, 8, 9])
 
 algoritmo = 'SA'
 lit = df['LIT.'].mean()

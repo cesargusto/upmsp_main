@@ -126,7 +126,7 @@ public class SA {
 					solucao = solucao_linha.clone();					
 					if(fo_solucao_linha < melhor_solucao.makespan()){
 						melhor_solucao = solucao.clone();
-						System.out.println("Melhora SA :"+melhor_solucao.makespan());
+						//System.out.println("Melhora SA :"+melhor_solucao.makespan());
 					}
 				}
 				else{

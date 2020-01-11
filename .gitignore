@@ -1,4 +1,5 @@
 # ignora pasta bin com todos os .class
+result/email.sh
 experiment_instances/preliminar/
 bin/
 *.class

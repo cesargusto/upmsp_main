@@ -45,7 +45,7 @@ public class R_ruiz {
         	linha = br.readLine();
         	st = new StringTokenizer(linha, bound_delimit);
         
-        	inst_name = (String)st.nextToken();
+        	inst_name = st.nextToken();
         	valor = Integer.parseInt(st.nextToken());
         	
         	ruiz.put(inst_name, valor);

@@ -36,7 +36,7 @@ public class StartExperiment {
 		
 		long Start = System.currentTimeMillis();
 		
-		String path_inst = (String)prop.getProperty("INSTANCE");
+		String path_inst = prop.getProperty("INSTANCE");
 		File[] name_list = ReadDirFilesNames.leDir(path_inst);
 		
 		for(int i = 0;i < name_list.length;i++) {
