@@ -9,7 +9,9 @@ import com.upmsp_main.experiment.WriteResultsFile;
 import com.upmsp_main.instances.ReadInstances;
 import com.upmsp_main.instances.readRuiz;
 import com.upmsp_main.metaheuristic.sa.SA;
-import com.upmsp_main.metaheuristic.sa.MovimentoSA2;
+import com.upmsp_main.metaheuristic.sa.SA2;
+import com.upmsp_main.metaheuristic.sa.Better_mov;
+import com.upmsp_main.metaheuristic.sa.Moviment;
 
 public class Teste {
 
@@ -34,23 +36,31 @@ public class Teste {
 		 * */
 	public static void main(String[] args) throws CloneNotSupportedException, IOException {
 		
-		String complete_path = "experiment_instances/ruiz/small/I_10_2_S_1-124_1.txt";
+		String complete_path = "experiment_instances/ruiz/large/I_250_30_S_1-124_10.txt";
 		ReadInstances inst = new readRuiz(complete_path);
 		
-		inst.imprime_tempo_exec();
-		inst.imprime_tempo_prep();
+		//inst.imprime_tempo_exec();
+		//inst.imprime_tempo_prep();
 		
 		Solution sol;
-		MovimentoSA2 sa_i = new MovimentoSA2();
-
-		
 		sol = new Solution(inst);
 		sol.ConstroiSolution();
+		//Moviment sa_i = new Moviment(sol);
+
+		//Better_mov bm = new Better_mov();
+		//sol.print_solution();
 		
-		sol.print_solution();
+		//System.out.println("Fo: "+sa_i.two_realloc(sol));
+		//bm.grava_movimento(sol, sa_i.getBetter_mov());
+		long Start = System.currentTimeMillis();
+		SA2 sa = new SA2(sol, 2000);
+		sa.execute_sa().print_makespan();
 		
-		//System.out.println(sa_i.insert_intra(sol));
-		sa_i.insert_extra(sol).print_solution();
+		long End = System.currentTimeMillis();
+		long Time = End - Start;
+		System.out.println("\nTEMPO SA -- "+Time/1000+" seg");
+		
+		
 		
 
 	}

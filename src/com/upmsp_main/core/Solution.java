@@ -49,6 +49,29 @@ public class Solution implements Cloneable{
 		return solCp;
 	}
 	
+	
+	/*
+	 * Função refatorada para melhorar performance
+	 * Refatoração feita dia 15 de Jan de 2020
+	 * @author Cesar
+	 * 
+	 * */
+	/*@Override
+	public Solution clone() throws CloneNotSupportedException {
+		Solution solCp = new Solution(arquivo);
+		int tam = solucao.size();
+		for (Machine machine : solucao) {
+			solCp.solucao.add(new Machine());
+			solucao.forEach();
+		}
+			for(int j = 0;j < tam_mq;j++){
+				int elemento = this.solucao.get(i).getJob(j);
+				solCp.getMaq(i).addJobToMaq(elemento);
+			}
+		}
+		return solCp;
+	}*/
+	
 	public void construction_greedy(){
 		
 		int num_maq = arquivo.getN_maqs();

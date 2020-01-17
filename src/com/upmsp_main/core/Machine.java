@@ -16,7 +16,16 @@ import com.upmsp_main.instances.ReadInstances;
 
 public class Machine {
 	private List<Integer> machine;
+	private int tempo_maq;
 	
+	public int getTempo_maq() {
+		return tempo_maq;
+	}
+
+	public void setTempo_maq(int tempo_maq) {
+		this.tempo_maq = tempo_maq;
+	}
+
 	public Machine(){
 		this.machine = new ArrayList<Integer>();
 	}
