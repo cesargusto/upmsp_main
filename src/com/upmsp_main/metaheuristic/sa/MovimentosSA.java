@@ -32,8 +32,11 @@ public class MovimentosSA implements Cloneable {
 			while(indice_menor == indice_maior)
 				indice_menor = rnd.nextInt(solucao.getSizeSol()); 
 			
-			int pm1 = rnd.nextInt(solucao.getMaq(indice_maior).getSizeMaq());
-			int pm2 = rnd.nextInt(solucao.getMaq(indice_menor).getSizeMaq());
+			//int pm1 = rnd.nextInt(solucao.getMaq(indice_maior).getSizeMaq());
+			//int pm2 = rnd.nextInt(solucao.getMaq(indice_menor).getSizeMaq());
+			
+			int pm1 = 4;
+			int pm2 = 2;
 			
 			int job = solucao.getMaq(indice_maior).getJob(pm1);
 			solucao.getMaq(indice_menor).setJobMaq(pm2, job);

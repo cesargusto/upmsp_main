@@ -79,11 +79,12 @@ public class Solution implements Cloneable{
 	
 	public void ConstroiSolution(){
 		List<Integer> candidatos = new ArrayList<>(arquivo.getN_jobs());
+		
 		for(int i = 0;i < arquivo.getN_jobs();i++){
 			candidatos.add(i);
 		}
 		for(int x = 0;x < arquivo.getN_maqs();x++){
-			this.setMaqSolucao(new Machine());
+			this.setMaqSolucao(new Machine(arquivo, x));
 		}
 		
 		int k = 0;
