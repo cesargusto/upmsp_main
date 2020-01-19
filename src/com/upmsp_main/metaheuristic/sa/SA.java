@@ -23,12 +23,11 @@ public class SA {
 		this.best_results = best_results;
 	}
 	
-	public SA(Solution solucao, int samax, BestResults best_results) {
+	public SA(Solution solucao, int samax) {
 		this.solucao = solucao;
-		this.m_sa = new MovimentosSA();
-		this.best_results = best_results;
+		this.m_sa = new MovimentosSA();		
 		this.T_INICIAL = 900.0;
-		this.ALF = 0.94;
+		this.ALF = 0.95;
 		this.SAMAX = samax;
 	}
 	
@@ -113,10 +112,10 @@ public class SA {
 			while(IterT < SAMAX){
 				IterT += 1;
 				
-				fo_solucao = solucao.makespan();
+				fo_solucao = solucao.makespan2();
 				solucao_linha = solucao.clone();
 				solucao_linha = this.gera_vizinho(solucao_linha);
-				fo_solucao_linha = solucao_linha.makespan();
+				fo_solucao_linha = solucao_linha.makespan2();
 				
 				//solucao_linha.print_solution();
 				
@@ -124,9 +123,9 @@ public class SA {
 				
 				if(Alfa < 0){
 					solucao = solucao_linha.clone();					
-					if(fo_solucao_linha < melhor_solucao.makespan()){
+					if(fo_solucao_linha < melhor_solucao.makespan2()){
 						melhor_solucao = solucao.clone();
-						System.out.println("Melhora SA :"+melhor_solucao.makespan());
+						System.out.println("Melhora SA :"+melhor_solucao.makespan2());
 					}
 				}
 				else{
@@ -143,10 +142,10 @@ public class SA {
 			IterT = 0;
 			//this.best_results.setMakespan_list(melhor_solucao.makespan());
 		}
-		solucao = melhor_solucao.clone();
-		int fo_melhor = solucao.makespan();
-		this.best_results.setBest_list(fo_melhor);
-		return solucao;
+		//solucao = melhor_solucao.clone();
+		//int fo_melhor = solucao.makespan2();
+		//this.best_results.setBest_list(fo_melhor);
+		return melhor_solucao;
 	}
 	
 	public Solution gera_vizinho(Solution s){

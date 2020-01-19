@@ -39,7 +39,7 @@ public class Solution implements Cloneable{
 		Solution solCp = new Solution(arquivo);
 		int tam = solucao.size();
 		for(int i = 0;i < tam;i++){
-			solCp.solucao.add(new Machine());
+			solCp.solucao.add(new Machine(arquivo, i));
 			int tam_mq = this.solucao.get(i).getSizeMaq();
 			for(int j = 0;j < tam_mq;j++){
 				int elemento = this.solucao.get(i).getJob(j);
@@ -104,6 +104,18 @@ public class Solution implements Cloneable{
 		
 		for(int t = 0;t < arquivo.getN_maqs();t++)
 			mspans.add(this.getMaq(t).tempoMaq(arquivo, t));
+
+		mspan = Collections.max(mspans);
+		
+		return mspan;
+	}
+	
+	public int makespan2(){
+		int mspan = 0;
+		List<Integer>mspans = new ArrayList<>(arquivo.getN_maqs());
+		
+		for(int t = 0;t < arquivo.getN_maqs();t++)
+			mspans.add(this.getMaq(t).getTempo_maq());
 
 		mspan = Collections.max(mspans);
 		
